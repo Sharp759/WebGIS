@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Analysis GIS App</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-map-marked-alt logo-icon"></i>
+                <h1>SPATIAL ANALYSIS</h1>
+                <div class="app-version">v1.0</div>
+            </div>
+            
+            <div class="control-group">
+                <div class="control-header">
+                    <i class="fas fa-file-import"></i>
+                    <h3>Data Import</h3>
+                </div>
+                <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+                <button id="csvButton" class="btn-primary">
+                    <i class="fas fa-file-csv"></i> Import CSV
+                </button>
+                <div id="csvStatus" class="status-message"></div>
+            </div>
+            
+            <div class="control-group">
+                <button id="plotButton" class="btn-success" disabled>
+                    <i class="fas fa-map-marker-alt"></i> Plot Markers
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <div class="control-header">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Basemap</h3>
+                </div>
+                <div class="basemap-options">
+                    <div class="basemap-option" data-value="light">
+                        <div class="basemap-preview light"></div>
+                        <span>Light</span>
+                    </div>
+                    <div class="basemap-option" data-value="dark">
+                        <div class="basemap-preview dark"></div>
+                        <span>Dark</span>
+                    </div>
+                    <div class="basemap-option" data-value="satellite">
+                        <div class="basemap-preview satellite"></div>
+                        <span>Satellite</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="control-header">
+                    <i class="fas fa-expand"></i>
+                    <h3>Buffer Analysis</h3>
+                </div>
+                <div class="range-slider">
+                    <input type="range" id="bufferRange" min="100" max="1000" step="100" value="500" disabled>
+                    <div class="range-value">
+                        <span id="bufferValue">500</span> meters
+                    </div>
+                </div>
+                <button id="applyBuffer" class="btn-info" disabled>
+                    <i class="fas fa-draw-polygon"></i> Apply Buffer
+                </button>
+                <button id="clearBuffer" class="btn-warning" disabled>
+                    <i class="fas fa-trash-alt"></i> Clear Buffer
+                </button>
+            </div>
+            
+            <div class="map-info">
+                <div id="coordinates">Lat: 0, Lng: 0</div>
+                <div id="zoom-level">Zoom: 2</div>
+            </div>
+        </div>
+        
+        <div id="map"></div>
+        <div class="map-overlay">
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <div class="spinner-text">Processing...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
